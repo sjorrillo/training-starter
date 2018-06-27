@@ -13,7 +13,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 const appContainer = document.getElementById('content');
 
 const appContent = (
-  <Router history={ history }>
+  <Router history={history}>
     { getRoutes(store) }
   </Router>
 );
