@@ -1,0 +1,21 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }],
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    "transform-runtime",
+    "add-module-exports",
+    "transform-async-to-generator",
+    "transform-decorators-legacy",
+    "transform-react-display-name"
+  ],
+  "ignore": [
+    "node_modules/**/*.js"
+  ]
+}
