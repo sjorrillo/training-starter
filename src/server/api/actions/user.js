@@ -1,4 +1,4 @@
-import { getDefaultUser, signIn } from '../../services/user';
+import { getDefaultUser, signIn, jwtLogin } from '../../services/user';
 
 export const getUser = (req, res) => {
   const result = getDefaultUser();
@@ -10,3 +10,9 @@ export const login = (req, res) => {
   const result = signIn(req, user, password);
   return res.json(result);
 };
+
+export const secureLogin = (req, res) => {
+  const {user, password} = req.body;
+  const result = jwtLogin(req, user, password);
+  return res.json(result);
+}
