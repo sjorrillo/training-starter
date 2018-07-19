@@ -1,6 +1,6 @@
-import { jwt } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { bcrypt} from 'bcryptjs';
-import { config } from '../config/config';
+import config from '../config/config';
 import UserDao from '../mongo/UserDao';
 
 
@@ -22,6 +22,23 @@ export const jwtLogin = (req, user, password) => {
   var pwd = password;
   var email = user;
   console.log(email);
+
+  if (user == 'admin' && pwd == 'admin') {
+    var token = jwt.sign({ id: user }, config.secret, {
+      expiresIn: 120
+    });
+    return { 
+      auth: true, 
+      token: token
+    };    
+  } else {
+    return { 
+      auth: false,
+      message: "Usuario no existe."
+    };   
+  }
+
+  /*
   UserDao.findOne({
     email: email
   })
@@ -47,5 +64,5 @@ export const jwtLogin = (req, user, password) => {
   }).catch((err) => {
     console.log(err);
     console.log('error in catch.');
-  });
+  });*/
 }
