@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { configureRoutes } from './routes';
-import { bd } from '../api/database/bd';
 
 const app = express();
 const apiPort = process.env.PORT || 3300;

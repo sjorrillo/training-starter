@@ -1,5 +1,5 @@
 
-export const getReceipt = (req) => {
+export const getReceipt = () => {
 
     console.log("Calling receipt method");
     return [

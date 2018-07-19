@@ -15,6 +15,7 @@
     "frontend:start": "bnr frontend --inline --hot",
     "backend:start": "bnr backend",
     "integration-test": "bnr integration-test \"src/server/**/__integration__/*-test.js\"",
+    "unit-test": "bnr unit-test \"src/server/**/__unittest__/*-test.js\"",
     "integration-test-single": "bnr integration-test ",
     "start": "concurrently \"npm run frontend:start\" \"npm run backend:start\""
   },
@@ -46,6 +47,12 @@
       "command": "node --max-old-space-size=4096 ./node_modules/.bin/mocha --compilers js:babel-core/register --bail",
       "env": {
         "NODE_ENV": "integration"
+      }
+    },
+    "unit-test": {
+      "command": "node --max-old-space-size=4096 ./node_modules/.bin/mocha --compilers js:babel-core/register --bail",
+      "env": {
+        "NODE_ENV": "unit-test"
       }
     }
   },
