@@ -14,7 +14,7 @@ import { login, loginCustomDispacher } from '../../redux/modules/auth';
 )
 export default class Login extends Component {
   handleSignInDefaultDispatchClick = () => {
-    this.props.login('javier', 'defaultDispatch');
+    this.props.login('admin', 'admin');
   };
 
   handleSignInCustomDispatchClick = () => {
@@ -37,6 +37,10 @@ export default class Login extends Component {
     return (
       <div>
         <h3>Login Component</h3>
+        <label>Username:</label>
+        <input></input>
+        <label>Password:</label>
+        <input></input>
         {this.renderDemoSection(this.handleSignInDefaultDispatchClick)}
         {this.renderDemoSection(this.handleSignInCustomDispatchClick, 'Sign In Custom Dispatch')}
       </div>

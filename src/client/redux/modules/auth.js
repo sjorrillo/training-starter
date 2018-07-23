@@ -25,7 +25,7 @@ export default (state = initialstate, action) => {
 
 export const login = (user, password) => ({
   types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-  promise: client => client.post('/account/login', { data: { user, password } }),
+  promise: client => client.post('/account/secure/login', { data: { user, password } }),
 });
 
 // request using the requestFactory to control all the flow of the request.
