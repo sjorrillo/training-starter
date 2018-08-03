@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { login, loginCustomDispacher } from '../../redux/modules/auth';
+import { login } from '../../redux/modules/auth';
 
 @connect(
   state => ({
@@ -9,16 +9,11 @@ import { login, loginCustomDispacher } from '../../redux/modules/auth';
   }),
   dispatch => bindActionCreators({
     login,
-    loginCustomDispacher,
   }, dispatch)
 )
 export default class Login extends Component {
   handleSignInDefaultDispatchClick = () => {
     this.props.login('javier', 'defaultDispatch');
-  };
-
-  handleSignInCustomDispatchClick = () => {
-    this.props.loginCustomDispacher('javier', 'customDispatch');
   };
 
   renderDemoSection = (onclickHandler, buttonText = 'Sign In') => {
@@ -38,7 +33,6 @@ export default class Login extends Component {
       <div>
         <h3>Login Component</h3>
         {this.renderDemoSection(this.handleSignInDefaultDispatchClick)}
-        {this.renderDemoSection(this.handleSignInCustomDispatchClick, 'Sign In Custom Dispatch')}
       </div>
     );
   }

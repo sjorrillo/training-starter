@@ -1,3 +1,4 @@
 export App from './app/app';
-export Login from './auth/login';
+export Home from './home/home';
 export NotFound from './not-found/not-found';
+export Profile from './profile/profile';

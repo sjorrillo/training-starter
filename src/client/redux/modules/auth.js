@@ -2,34 +2,61 @@ const LOGIN = 'auth/LOGIN';
 const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
 const LOGIN_FAIL = 'auth/LOGIN_FAIL';
 
+const RESTORE_STATE = 'auth/RESTORE_STATE';
+const LOGOUT = 'auth/LOGOUT';
+
 const initialstate = {};
 
 export default (state = initialstate, action) => {
   switch (action.type) {
     case LOGIN:
-      return state;
+      return {
+        ...state,
+        loggingIn: true,
+        loggedIn: false,
+        loggingOut: false,
+        loginError: null,
+      };
     case LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.result,
+        loggingIn: false,
+        loggedIn: true,
+        loggingOut: false,
+        loginError: null,
+        ...action.result,
       };
     case LOGIN_FAIL:
       return {
         ...state,
+        loggingIn: false,
+        loggedIn: false,
+        loggingOut: false,
+        loginError: action.error,
         user: null,
+      };
+    case RESTORE_STATE:
+      return {
+        ...state,
+        ...action.state,
+        loggingIn: false,
+        loggingOut: false,
+        loginError: null,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        ...action.state,
+        loggingIn: false,
+        loggedIn: false,
+        loggingOut: true,
       };
     default:
       return state;
   }
 };
 
-export const login = (user, password) => ({
-  types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-  promise: client => client.post('/account/login', { data: { user, password } }),
-});
-
-// request using the requestFactory to control all the flow of the request.
-export const loginCustomDispacher = (user, password) => async (makeRequest, dispatch, getState) => {
+export const login = (user, password) => async (makeRequest, dispatch) => {
   dispatch({ type: LOGIN });
 
   const { result, error } = await makeRequest({
@@ -38,18 +65,18 @@ export const loginCustomDispacher = (user, password) => async (makeRequest, disp
     data: { user, password },
   });
 
-  const { authStore } = getState();
-  console.log({
-    state: getState(),
-    auth: authStore,
-    result,
-    error,
-  });
-
   if (error) {
     dispatch({ type: LOGIN_FAIL, error });
     return;
   }
 
   dispatch({ type: LOGIN_SUCCESS, result });
+};
+
+export const restoreState = (state = {}) => (makeRequest, dispatch) => {
+  dispatch({ type: RESTORE_STATE, state });
+};
+
+export const logout = () => (makeRequest, dispatch) => {
+  dispatch({ type: LOGOUT, state: initialstate });
 };

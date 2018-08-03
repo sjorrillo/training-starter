@@ -2,7 +2,7 @@ const getCommonHeaders = () => ({
   'X-Request-Id': 'Test request id',
 });
 
-const requestFactory = (dispatch, getState, client) => async ({
+export const requestFactory = (dispatch, getState, client) => async ({
   method, url, data, params,
 }) => {
   const request = client[method.toLowerCase()];
