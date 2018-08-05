@@ -10,3 +10,8 @@ export const login = (req, res) => {
   const result = signIn(req, user, password);
   return res.json(result);
 };
+
+export const updateProfile = (req, res) => {
+  console.log('Update profile');
+  return res.json({ name: 'javier' });
+};

@@ -6,4 +6,7 @@ export const configureRoutes = router => {
 
   router.route('/account/login')
     .post(actions.login);
+
+  router.route('/account/profile')
+    .put(actions.updateProfile);
 };

@@ -13,7 +13,7 @@ import { login } from '../../redux/modules/auth';
 )
 export default class Login extends Component {
   handleSignInDefaultDispatchClick = () => {
-    this.props.login('javier', 'defaultDispatch');
+    this.props.login('SJOrrillo', 'defaultDispatch');
   };
 
   renderDemoSection = (onclickHandler, buttonText = 'Sign In') => {

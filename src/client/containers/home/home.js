@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import Login from '../auth/login';
-import { logout } from '../../helpers/auth-helper';
 
 @connect(
   state => ({
@@ -14,8 +13,6 @@ import { logout } from '../../helpers/auth-helper';
   }, dispatch)
 )
 export default class Home extends Component {
-  handleLogout = () => logout();
-
   gotToPrivateUrl = () => browserHistory.push('/profile');
 
   renderHome = () => (
@@ -24,9 +21,6 @@ export default class Home extends Component {
 
       <div>
         <button type="button" role="button" onClick={this.gotToPrivateUrl}>Go to Private URL</button>
-      </div>
-      <div>
-        <button type="button" role="button" onClick={this.handleLogout}>Logout</button>
       </div>
     </div>
   );

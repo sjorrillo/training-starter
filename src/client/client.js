@@ -14,7 +14,7 @@ const appContainer = document.getElementById('content');
 
 const appContent = (
   <Router history={history}>
-    { getRoutes(store) }
+    { getRoutes({ store }) }
   </Router>
 );
 

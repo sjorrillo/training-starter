@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { testPrivateRequest } from '../../redux/modules/profile';
 
-const Profile = () => (
-  <div>
-    <h3>Profile Component</h3>
-    <p>this is a private component</p>
-  </div>
-);
+@connect(
+  () => ({}),
+  dispatch => bindActionCreators({
+    testPrivateRequest,
+  }, dispatch)
+)
+export default class Profile extends Component {
+  handleRequestWithToken = () => {
+    this.props.testPrivateRequest();
+  };
 
-export default Profile;
+  render() {
+    return (
+      <div>
+        <h3>Profile Component</h3>
+        <p>this is a private component</p>
+
+        <div>
+          <button type="button" role="button" onClick={this.handleRequestWithToken}>Request with token</button>
+        </div>
+      </div>
+    );
+  }
+}

@@ -1,3 +1,4 @@
+import globals from '../../common/globals';
 
 export const SESSION_STORAGE = 'starter-auth';
 
@@ -6,6 +7,6 @@ export const isLoggingOut = () => !!loggingOut;
 
 export const logout = () => {
   loggingOut = true;
-  localStorage.removeItem(SESSION_STORAGE);
-  location.reload();
+  globals.localStorage.removeItem(SESSION_STORAGE);
+  globals.location.reload();
 };
